@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WXX4LP97NT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WXX4LP97NT');
+  </script>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes, shrink-to-fit=no">
+  <style>
+    .hidden {
+      height: 100%;
+      min-height: 100%;
+      overflow: hidden !important;
+      touch-action: none;
+    }
+  </style>
+  <script>
+    document.documentElement.addEventListener('touchstart', function (event) {
+      if (event.touches.length > 1) {
+        event.preventDefault();
+      }
+    }, false);
+    //Javascript
+    function scrollDisable() {
+      $('html, body').addClass('hidden');
+    }
+    function scrollAble() {
+      $('html, body').removeClass('hidden');
+    }
+  </script>
+  <link rel="icon" href="favicon.png">
+  <meta name="keywords" content="로드뷰 거리뷰 내비게이션 게임 로드뷰게임 지도 네이버지도">
+  <meta name="description" content="로드뷰 여행 in Seoul">
+  <meta property="og:title" content="로드뷰 여행 게임">
+  <meta property="og:description" content="로드뷰를 따라 목적지에 도달해라! 로드뷰를 이용한 신박한 여행 게임 Roadview Traveler">
+  <meta property="og:image" content="webImage.png">
+  <title>로드뷰 여행 in Seoul</title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8110552537282131"
+    crossorigin="anonymous"></script>
+  <style>
+    @font-face {
+      font-family: 'KCC-Ganpan';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCC-Ganpan.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+    .notosanskr * {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: bold;
+    }
+
+    body {
+      font-family: 'Noto Sans KR';
+      font-weight: 550;
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin: 20px 0;
+    }
+
+    #roadview {
+      position: relative;
+      z-index: 1 !important;
+    }
+
+    #info {
+      text-align: left;
+      font-size: 4vh;
+      margin: 10px 0;
+    }
+
+    button {
+      display: block;
+      margin: 0 auto;
+      font-size: 24px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      border: 2px solid white !important;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Noto Sans KR';
+      font-weight: bold;
+    }
+
+    #copybtn1 {
+      border: none !important;
+    }
+
+    button:hover {
+      background-color: white;
+      color: #007bff;
+      border: 2px solid #007bff !important;
+    }
+
+    #btnText {
+      font-size: 3.5vh !important;
+      font-family: 'Noto Sans KR';
+      font-weight: 500;
+    }
+
+
+    #result.failed {
+      color: red;
+    }
+
+    #target {
+      color: #0890AF;
+    }
+
+    #currentLocation {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background-color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+    }
+
+    #playInstructions {
+      display: none;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #playInstructions {
+      /* 기존의 top 속성 값보다 위쪽으로 조정합니다. */
+      top: 10vh;
+      z-index: 998;
+    }
+
+    #playInstructions.show {
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #007bff;
+      color: #fff;
+      padding: 1.5vh;
+      font-family: 'Noto Sans KR';
+      font-weight: 600;
+      height: 5.5vh;
+    }
+
+    nav img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      #roadview img {
+        width: 40px;
+      }
+    }
+
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    #shareButtons {
+      display: flex;
+      gap: 10px;
+    }
+
+    #shareButtons a,
+    #shareButtons button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      border: none;
+      padding: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    #shareButtons img {
+      width: 50px;
+      height: 50px;
+    }
+
+    #roadview {
+      position: relative;
+      z-index: 1 !important;
+    }
+
+    /* 결과를 표시하는 요소 */
+    #result {
+      text-align: center;
+      font-size: 100px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* 공유 버튼 컨테이너 */
+    #shareContainer {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 997;
+    }
+
+    #buttonsContainer {
+      position: absolute;
+      bottom: 90px;
+      /* 조정된 값 (임의로 설정한 값) */
+      left: 10px;
+      /* 변경된 속성: 왼쪽에 정렬 */
+      display: flex;
+      gap: 10px;
+      z-index: 999;
+    }
+
+    /* 로드뷰 창 위에 위치할 로드뷰 이미지 */
+    #roadImage {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 15vmin;
+      z-index: 996;
+      display: flex;
+    }
+
+    @font-face {
+      font-family: 'KBO-Dia-Gothic_bold';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    /* 목적지 정보를 표시하는 컨테이너 */
+    #targetContainer {
+      font-family: 'KBO-Dia-Gothic_bold';
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 7vh;
+      font-weight: bold;
+      color: #333;
+      text-align: left;
+      /* Add this to align the text to the left */
+      background-color: #f2f2f2;
+      /* Add background color to create a box */
+      padding: 5px 10px;
+      /* Add padding to the box */
+      border-radius: 5px;
+      display: flex;
+      z-index: 995;
+    }
+
+    /* code 모달 css */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      max-width: 100vmin;
+      margin-top: 10%;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .h {
+      font-size: 50px;
+      font-family: 'KBO-Dia-Gothic_bold';
+    }
+
+    .image-and-description {
+      display: flex;
+      align-items: flex-start;
+      /* 수정: 이미지와 텍스트를 위쪽으로 정렬 */
+      gap: 10px;
+    }
+
+    .image-and-description img {
+      margin-top: 1%;
+      /* 수정: 이미지의 위쪽 여백 제거 */
+      width: 40vmin;
+      height: auto;
+    }
+
+    .image-and-description p {
+      margin-bottom: 0;
+      margin-left: 1%;
+      font-size: 2.6vmin;
+      /* 텍스트의 글자 크기를 조정하세요 */
+    }
+
+    .play-button {
+      padding: 12px 24px;
+      background-color: transparent !important;
+      color: #fff;
+      font-size: 3vh;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      font-family: 'Noto Sans KR';
+      font-weight: 500;
+      border: 2px solid white;
+    }
+
+    .play-button:hover {
+      background-color: #fff;
+      color: #0095ff;
+      border: 2px solid #0095ff
+    }
+
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+  </style>
+
+
+  </style>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8110552537282131"
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div id="roadview"></div>
+  <div id="result"></div>
+  <div id="shareContainer">
+    <div id="shareButtons">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=navgame.netlify.app" target="_blank" class="shareButton">
+        <img src="facebook_icon.png" alt="Share on Facebook" title="Share on Facebook">
+      </a>
+      <a href="https://twitter.com/intent/tweet?url=navgame.netlify.app" target="_blank" class="shareButton">
+        <img src="twitter_icon.png" alt="Share on Twitter" title="Share on Twitter">
+      </a>
+      <a href="https://www.instagram.com/?url=navgame.netlify.app" target="_blank" class="shareButton">
+        <img src="instagram_icon.png" alt="Share on Instagram" title="Share on Instagram">
+      </a>
+      <button id="copybtn1" onclick="copyToClipboard();" id="copyIconButton">
+        <img src="copy_icon.png" alt="Copy Link" title="Copy Link">
+      </button>
+    </div>
+  </div>
+  <script>
+    function copyToClipboard() {
+      const textToCopy = 'https://navgame.netlify.app'; // 복사할 텍스트
+
+      // 텍스트를 복사하기 위해 임시로 textarea 엘리먼트를 생성합니다.
+      const tempTextarea = document.createElement('textarea');
+      tempTextarea.value = textToCopy;
+      document.body.appendChild(tempTextarea);
+
+      // textarea를 선택하고 복사합니다.
+      tempTextarea.select();
+      document.execCommand('copy');
+
+      // 사용이 끝난 임시 textarea 엘리먼트를 삭제합니다.
+      document.body.removeChild(tempTextarea);
+
+      // 복사 완료 메시지 등을 추가로 처리할 수 있습니다.
+      alert('텍스트가 클립보드에 복사되었습니다.');
+    }
+  </script>
+
+  <!-- 게임 인터페이스 -->
+  <!--code 모달 Html-->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="h" id="destinationNameElement"></div>
+      <div class="image-and-description">
+        <img id="destinationImgElement" src="" height="200px">
+        <p id="destinationDescription"></p>
+      </div>
+    </div>
+  </div>
+  <img src="navSeoul.png" id="roadImage">
+  <div id="buttonsContainer">
+    <button onclick="findCity()" id="btnText" id="play-button">목적지 확인</button>
+    <button onclick="location.href='index.html'" id="btnText" id="play-button">홈화면</button>
+  </div>
+  <div id="targetContainer" onclick="openModal()">
+    <div id="info">&nbsp;<span id="target" id="openModalBtn">&nbsp;<span id="targetCity"></span>에 도착하세요! &nbsp;<span
+          id="startLocation"></span>
+    </div>
+    <script>
+      var destinations = [
+        {
+          name: "63빌딩",
+          description: "63빌딩은 한국의 대표적인 랜드마크로, 엔터테인먼트와 문화 산업을 지원하는 융복합 문화공간으로 운영되고 있습니다.",
+          image: "63빌딩.png"
+        },
+        {
+          name: "서울역",
+          description: "서울역은 대한민국의 중앙 역사입니다. 서울의 중심에 위치하여 교통의 터전 역할을 합니다.",
+          image: "서울역.png"
+        },
+        // 다른 목적지들도 이와 같이 추가할 수 있습니다.
+        // ...
+      ];
+    </script>
+    <script>
+      function openModal() {
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        var modal = document.getElementById("myModal");
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
+    </script>
+
+    <!-- 현재 위치 정보를 표시할 요소 -->
+
+    <!-- 네이버 지도 API 호출 -->
+    <script type="text/javascript"
+      src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=iwuhl2hw93&submodules=panorama"></script>
+    <script>
+      // 현재 화면의 width와 height를 측정하여 전역 변수로 지정하는 함수
+      function getViewportSize() {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        return { width: width, height: height };
+      }
+
+      // 화면에 처음 접속했을 때 화면 크기 측정하여 전역 변수로 저장
+      var viewportSize = getViewportSize();
+      var screenWidth = viewportSize.width;
+      var screenHeight = viewportSize.height;
+    </script>
+    <script>
+      var panoramaOptions = {
+        size: new naver.maps.Size(screenWidth, screenHeight),
+        flightSpot: false,
+        pov: {
+          pan: -135,
+          tilt: 29,
+          fov: 100
+        }
+      };
+      var pano = new naver.maps.Panorama("roadview", panoramaOptions);
+
+      const seoulBounds = {
+        south: 37.413294,
+        west: 126.734086,
+        north: 37.715133,
+        east: 127.269311
+      };
+
+      function generateRandomLatLng() {
+        const lat = Math.random() * (seoulBounds.north - seoulBounds.south) + seoulBounds.south;
+        const lng = Math.random() * (seoulBounds.east - seoulBounds.west) + seoulBounds.west;
+        return { latitude: lat, longitude: lng };
+      }
+
+      const landmarks = [
+        { name: "63빌딩", latitude: 37.519235, longitude: 126.940792 },
+        { name: "서울역", latitude: 37.555171, longitude: 126.971387 },
+        { name: "서울시청", latitude: 37.566295, longitude: 126.977945 },
+        { name: "광화문", latitude: 37.575819, longitude: 126.976757 },
+        { name: "숭례문", latitude: 37.559472, longitude: 126.975279 },
+        { name: "독립문", latitude: 37.572280, longitude: 126.959424 },
+        { name: "롯데월드타워", latitude: 37.512978, longitude: 127.102476 },
+        { name: "명동성당", latitude: 37.563092, longitude: 126.987339 }
+      ];
+
+
+      const randomStartLocation = generateRandomLatLng();
+      const randomDestination = landmarks[Math.floor(Math.random() * landmarks.length)];
+
+      function calculateDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371; // 지구의 반지름 (단위: km)
+        const dLat = (lat2 - lat1) * (Math.PI / 180);
+        const dLon = (lon2 - lon1) * (Math.PI / 180);
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+          Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const distance = R * c; // 두 지점 사이의 거리 (단위: km)
+        return distance * 1000; // 미터로 변환하여 반환
+      }
+      var des = randomDestination.name;
+      console.log(des)
+
+      //목적지 이미지 파일명
+
+      var destinationName = des
+      var destinationNameElement = document.getElementById("destinationNameElement");
+      destinationNameElement.innerHTML = des;
+      var desArray = ["63빌딩", "서울역", "서울시청", "광화문", "숭례문", "독립문", "롯데월드타워", "명동성당"]
+      var linkArray = ["image63.png", "imageYuk.png", "imageSi.png", "imageGwang.png", "imageSoong.png", "imageDok.png", "imageLot.png", "imageMyung.png"]
+      var explanationArray = [
+        "서울 영등포구에 위치한 초고층건물이다. 지상높이는 249m(해발 264m, 안테나 높이를 포함할 경우 지상높이는 274m(해발 289m)다. 지하 3층 지상 60층으로 총 63층이다. 63빌딩은 1985년부터 1987년까지 아시아 최고층 빌딩이었으며, 2002년까지 대한민국 최고층 빌딩이었다."
+        , "서울역은 서울특별시 중구, 용산구의 경계에 있는 철도역이다. 서울역은 1900년 7월 8일, 남대문 정거장이라는 이름의 33㎡의 단층 목조 건물로 처음 문을 열었다. 1923년 경성역으로 이름을 바꾸고, 약 3년간의 공사를 거쳐 1925년 스위스 루체른 역을 모델로 한 르네상스와 바로크 절충 양식의 역사(현, 문화역서울284)가 준공되었다. 1947년 서울역으로 명칭을 변경하고, 꾸준한 확장을 통해 명실상부한 수도 서울의 관문으로서 위용을 갖추게 되었다. 이후 1988년 현대식 건물의 민자역사시대를 맞아했고, 2004년 고속철도시대를 여는 시발역으로 재단장하였다. "
+        , "서울특별시의 행정을 총괄하는 기관이자 그 기관이 입주한 광역자치단체 청사이다. 일제강점기 조선총독부가 현 서울시청 본관 부지에 있던 경성일보 건물을 허물고 그 자리에 경성부청 청사를 짓게 되었고 이 건물이 바로 서울시청 구 청사, 현 서울도서관 건물이다. 이후 2012년 서울시청 구 청사 뒤에 현재 서울시청 건물이 지어졌다."
+        , " 조선왕조 법궁인 경복궁의 남쪽에 있는 정문이다. 임금의 큰 덕이 온 나라를 비춘다는 의미이다. 1395년에 세워졌으며, 2층 누각 구조로 되어 있다. 1592년 선조 대에 이르러 임진왜란으로 경복궁 전체의 소실과 함께 파괴되어 한동안 폐허로 남아 있었다가, 1865년 흥선대원군의 경복궁 중건으로 복원되었다. 광화문은 오늘날 서울을 넘어 대한민국을 상징하는 대표 건축물로 남아 있다. "
+        , "600년 동안 한양을 둘러싸고 있었던 조선 서울 한양도성의 남쪽에 위치한 문. 현재도 서울의 중심에 위치하고 있으며, 서울의 상징이나 다름 없는 건축물이다. 남대문이라고도 한다. 2008년 2월 10일에 방화로 인해 대형 화재가 발생하여 반쯤 붕괴되었다. 복원 작업은 5년 뒤인 2013년에 완료되었다."
+        , "1896년부터 1898년에 걸쳐 완공된 기념문이다. 양식은 유럽식 개선문의 모습을 하고 있으며, 문의 기능을 수행할 목적으로 만든 것이 아닌 기념비로서 만든 것이다. 청나라의 간섭을 받지 않겠다는 의지로 독립협회가 건축한 건축물이다."
+        , "지상 123층, 높이 554.5m로 2023년 기준으로 대한민국 최고층 건물, 세계에서 5번째로 높은 건물, OECD 중에서 가장 높은 건물 등의 기록을 보유하고 있다. 본 건물은 롯데그룹의 한국 본사로서 사용되는 중이다. 누구든지 돈을 지불하면 자유롭게 드나들 수 있는 전망대가 있기 때문에 여의도 63빌딩과 남산서울타워의 명성을 이어받아 서울을 넘어 대한민국을 대표하는 새로운 랜드마크로 자리 잡았다."
+        , "고딕 양식을 따르고 있는 천주교 서울대교구의 주교좌성당이다 1898년에 건립된 유서 깊은 유적지로, 사적으로 지정되어 있다. 1970년대 이후 민주화 운동의 성지 역할을 했다. 명동성당에서는 1976년 3.1 민주 구국선언이 발표됐고 특히 그 유명한 김수환 스테파노 추기경의 1971년 성탄 자정미사 강론과 박종철 고문치사 사건의 은폐·조작을 폭로했던 1987년 5.18 7주기 추모미사가 거행됐고 6월 항쟁 당시에는 대학생 농성단의 은신처로 역할을 다했으며, 6월 항쟁 이후에는 항쟁 희생자들을 기리는 각종 미사들이 집전되었다."
+      ]
+      var destinationImage = 'seoulImage\\' + linkArray[desArray.indexOf(des)]
+      var destinationImgElement = document.getElementById("destinationImgElement");
+      destinationImgElement.src = destinationImage;
+      const order = desArray.indexOf(des);
+      const explain = explanationArray[desArray.indexOf(des)]
+      document.getElementById("destinationDescription").textContent = explain;
+      /*var destination = document.getElementById("destinationDescription");
+      destinationDescription.innerText = descriptionText ;*/
+
+
+      var selectedDestinationName = document.getElementById("targetCity").innerText;
+      var selectedDestination = destinations.find(dest => dest.name === selectedDestinationName);
+      if (selectedDestination) {
+        var destinationDescriptionElement = document.getElementById("destinationDescription");
+        destinationDescriptionElement.innerText = selectedDestination.description;
+      }
+
+
+
+      document.getElementById("startLocation").innerText = "";
+      document.getElementById("targetCity").innerText = randomDestination.name;
+
+
+      function findCity() {
+        const userLatitude = pano.getPosition().lat();
+        const userLongitude = pano.getPosition().lng();
+        const destinationLatitude = randomDestination.latitude;
+        const destinationLongitude = randomDestination.longitude;
+        const distance = calculateDistance(userLatitude, userLongitude, destinationLatitude, destinationLongitude);
+        //radius 정하기
+        const withinDistance = distance <= 200; // 100 meters radius
+
+        const resultElement = document.getElementById("result");
+        if (withinDistance) {
+          var resultHtml = 1;
+          var des = randomDestination.name;
+          localStorage.setItem("resultHtml", resultHtml);
+          localStorage.setItem("des", des);
+          window.location.href = "result.html"
+          resultElement.innerText = "도시를 찾았습니다! 성공!";
+          resultElement.classList.remove("failed");
+          showSuccessPage();
+        } else {
+          var resultHtml = 0;
+          var des = randomDestination.name;
+          localStorage.setItem("resultHtml", resultHtml);
+          localStorage.setItem("des", des);
+          window.location.href = "result.html"
+          resultElement.innerText = "목적지 도시가 아닙니다. 실패!";
+          resultElement.classList.add("failed");
+        }
+
+        resultElement.style.display = "block";
+        setTimeout(function () {
+          location.reload();
+        }, 1000); // 3 seconds delay before refreshing the page
+      }
+
+      const dfct = parseInt(localStorage.getItem('dfct'));
+      console.log(dfct);
+
+      function generateSpawnPointWithin1km(destination) {
+        const R = 6371; // 지구의 반지름 (단위: km)
+        const km = dfct; // 스폰 지점과 목적지 사이의 거리 (단위: km)
+
+        const bearing = Math.random() * 2 * Math.PI;
+
+        const lat1 = destination.latitude * (Math.PI / 180);
+        const lon1 = destination.longitude * (Math.PI / 180);
+
+        const lat2 = Math.asin(Math.sin(lat1) * Math.cos(km / R) + Math.cos(lat1) * Math.sin(km / R) * Math.cos(bearing));
+        const lon2 = lon1 + Math.atan2(Math.sin(bearing) * Math.sin(km / R) * Math.cos(lat1), Math.cos(km / R) - Math.sin(lat1) * Math.sin(lat2));
+
+        return { latitude: lat2 * (180 / Math.PI), longitude: lon2 * (180 / Math.PI) };
+      }
+
+      const spawnPoint = generateSpawnPointWithin1km(randomDestination);
+
+      function initMap() {
+        pano.setPosition(new naver.maps.LatLng(spawnPoint.latitude, spawnPoint.longitude));
+
+        const mapOptions = {
+          center: new naver.maps.LatLng(spawnPoint.latitude, spawnPoint.longitude),
+          zoom: 10
+        };
+        const map = new naver.maps.Map("map", mapOptions);
+
+        const markerOptions = {
+          position: new naver.maps.LatLng(randomDestination.latitude, randomDestination.longitude),
+          map: map
+        };
+        const marker = new naver.maps.Marker(markerOptions);
+      }
+
+      initMap();
+
+    </script>
+</body>
+
+</html>

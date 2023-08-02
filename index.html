@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WXX4LP97NT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WXX4LP97NT');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes, shrink-to-fit=no">
+<style>
+  .hidden {height:100%; min-height:100%; overflow:hidden !important; touch-action:none;}
+</style>
+<script>
+  document.documentElement.addEventListener('touchstart', function (event) {
+  if (event.touches.length > 1) {
+    event.preventDefault();
+  }
+}, false);
+  //Javascript
+function scrollDisable(){
+    $('html, body').addClass('hidden');
+}
+function scrollAble(){
+    $('html, body').removeClass('hidden');
+}
+</script>
+  <meta charset="utf-8">
+  <link rel="icon" href="favicon.png">
+  <link rel="icon" href="favicon.png">
+  <meta name="keywords" content="로드뷰 거리뷰 내비게이션 게임 로드뷰게임 지도 네이버지도 스트리트뷰 로드뷰트래블러 roadview traveler 여행 서울 경주">
+  <meta name="description" content="로드뷰 여행">
+  <meta property="og:title" content="로드뷰 여행 게임 Roadview Traveler">
+  <meta property="og:description" content="로드뷰를 따라 목적지에 도달해라! 로드뷰를 이용한 여행 게임 Roadview Traveler">
+  <meta property="og:image" content="webImage.png">
+  <title>로드뷰 여행 게임 Roadview Traveler</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8110552537282131"
+    crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #fff !important;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('bg.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0.5;
+      /* 배경 이미지의 투명도를 50%로 설정합니다. */
+    }
+
+    body {
+      /* Set the opacity to 50% */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+
+
+    .image-wrapper {
+      /* Optional: If you want to hide the image wrapper */
+      /* display: none; */
+    }
+
+
+
+    .centered-image {
+      width: 100vmax;
+      display: block;
+      outline: none;
+      margin-left: 5vw;
+      ;
+      /* Hide the outline around the image */
+    }
+
+    .text-container {
+      position: relative;
+      /* 추가: 텍스트 컨테이너에 상대적 위치 설정 */
+      z-index: 1;
+      /* 추가: 텍스트 컨테이너를 배경 이미지 위에 표시 */
+    }
+  </style>
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin: 20px 0;
+      font-size: 5vmin;
+    }
+
+    .play-button-wrapper {
+      text-align: center;
+    }
+
+    .play-button {
+      padding: 12px 24px;
+      background-color: transparent;
+      color: #fff;
+      font-size: 3vh;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      font-family: 'Noto Sans KR';
+      font-weight: 500;
+      border: 2px solid white;
+    }
+
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .play-button:hover {
+      background-color: #fff;
+      color: #0095ff;
+      border: 2px solid #0095ff
+    }
+
+
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      /* 원하는 간격을 설정하세요 */
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      /* Set the height of the container to make sure it takes up the full height of its parent */
+    }
+
+
+    .animated-image {
+      width: 70vmin;
+      animation: upAndDown 3s infinite;
+    }
+
+    @keyframes upAndDown {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes upAndDown {
+
+      0%,
+      100% {
+        transform: translateY(0);
+        /* Image stays at its initial position */
+      }
+
+      50% {
+        transform: translateY(-30px);
+        /* Image moves up by 10px at 50% of the animation duration */
+      }
+    }
+
+    /* 모달 스타일 */
+    #modal.modal-overlay {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.5);
+      /* 배경을 흐리게 처리 */
+      z-index: 9999;
+      /* 모달 창을 항상 상위에 표시 */
+    }
+
+    #modal .modal-window {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      padding: 20px;
+      width: 400px;
+    }
+
+    #modal .title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: black;
+    }
+
+    #modal .close-area {
+      float: right;
+      cursor: pointer;
+    }
+
+    #modal .content {
+      margin-top: 20px;
+      color: black;
+    }
+
+    #email {
+      text-decoration: none !important;
+      color: #cbedff
+    }
+
+    #contact {
+      text-align: center;
+      margin-top: 40px;
+      z-index: 9999;
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8110552537282131"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="image-wrapper" class="container">
+    <div class="image-container">
+      <img class="centered-image animated-image" src="center.png" alt="이미지" width="60%">
+    </div>
+
+    <div class="text-container">
+      <!-- 수정: 텍스트 컨테이너를 생성하여 텍스트를 포함시킴 -->
+      <h1 id="h1">👋 로드뷰를 따라 목적지에 도착해보세요!</h1><br>
+
+      <div class="play-button-wrapper">
+        <a href="dfct.html" class="play-button">&nbsp플레이&nbsp </a> &nbsp&nbsp&nbsp
+        <a class="play-button" id="open-modal" class="open-modal-button">&nbsp게임방법&nbsp </a>
+        <!--게임방법엔 유튜브-->
+      </div>
+      <div id="contact">
+        Made by <a target="blank" id="email" href="https://www.youtube.com/channel/UCjIDPcPzbi4MKPeq0m5pn9Q">Ci
+          코듐</a><br>
+        Made with chatGPT<br>
+        문의: <a target="blank" id="email"
+          href="mailto:entrybit1234@gmail.com?subject=Roadview Traveler 문의">entrybit1234@gmail.com</a>
+      </div>
+    </div>
+    <div id="modal" class="modal-overlay">
+      <div class="modal-window">
+        <div class="title">
+          <h2>게임 방법</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content">
+          Roadview Traveler을 플레이해 주셔서 감사합니다!<br>
+          이 게임은 네이버 지도의 거리뷰 기능을 활용합니다. 거리뷰 화면에 표시된 화살표 버튼을 클릭해서 움직일 수 있습니다. 유명한 서울의 명소 중 한 곳을 목적지로 하고, 플레이어는 그 근처에 스폰되어
+          목적지를 찾아가야 합니다. 목적지를 다 찾았다면 '목적지 확인' 버튼을 클릭해주세요.<br>
+          현재는 서울만 지원하고 있지만 추후 다른 도시들을 추가할 예정입니다. 더 자세한 내용은 아래 영상을 참고해주세요.<br>플레이어님께 즐거운 시간이 되길 바랄게요!<br><br>
+          <iframe width="100%" height="240px" src="https://www.youtube.com/embed/ayuLgu2BNPE?start=8"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+          <span style="color: gray!important; text-align: center!important;">아무 곳이나 눌러서 닫으세요</span>
+        </div>
+
+      </div>
+    </div>
+
+    <script>const modal = document.getElementById("modal");
+      const openModalBtn = document.getElementById("open-modal");
+      const closeModalBtn = modal.querySelector(".close-area");
+
+      // 모달창 열기
+      openModalBtn.addEventListener("click", () => {
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden"; // 스크롤바 제거
+      });
+
+      // 모달창 닫기
+      function closeModal() {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // 스크롤바 보이기
+      }
+
+      closeModalBtn.addEventListener("click", closeModal);
+
+      modal.addEventListener("click", (e) => {
+        const evTarget = e.target;
+        if (evTarget.classList.contains("modal-overlay")) {
+          closeModal();
+        }
+      });
+
+      window.addEventListener("keyup", (e) => {
+        if (modal.style.display === "flex" && e.key === "Escape") {
+          closeModal();
+        }
+      });
+    </script>
+
+</body>
+
+</html>
